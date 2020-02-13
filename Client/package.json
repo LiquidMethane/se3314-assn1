@@ -1,0 +1,12 @@
+{
+  "name": "remote-image-display",
+  "version": "1.0.0",
+  "description": "",
+  "main": "../Client/GetImage.js",
+  "dependencies": {
+    "opn": "^5.4.0"
+  },
+  "devDependencies": {},
+  "author": "Ruiqi Tian",
+  "license": "ISC"
+}
