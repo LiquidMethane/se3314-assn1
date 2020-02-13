@@ -4,6 +4,7 @@
   "description": "",
   "main": "../Client/GetImage.js",
   "dependencies": {
+    "command-line-args": "^5.1.1",
     "opn": "^5.4.0"
   },
   "devDependencies": {},

@@ -7,14 +7,35 @@ var opn = require('opn'); // uncomment this line after you run npm install comma
 // Enter your code for the client functionality here
 // Consider the code given iin unit 7 slide 40 as a base and build upon it
 
-let HOST = '127.0.0.1',
-    PORT = 3000;
+const commandLineArgs = require('command-line-args'); // helps with implementing command line args
+
+const optionDefinitions = [
+    { name: 'server', alias: 's', type: String },
+    { name: 'query', alias: 'q', type: String },
+    { name: 'version', alias: 'v', type: Number }
+]
+
+const options = commandLineArgs(optionDefinitions);
 
 
-var client = new net.Socket();
+// let colonPosition = charPosition(options.server, ':');
 
-client.connect(PORT, HOST, () => {
-    console.log(`CONNECTED TO: ${HOST} : ${PORT}`);
-    client.write(`Hi there.`);
-});
+let serverInfo = options.server.split(':');
 
+let host = serverInfo[0];
+let port = serverInfo[1];
+let filename = options.query;
+let version = options.version || 3314;
+
+console.log(`host: ${host} port: ${port} file: ${filename} version ${version}`);
+
+
+// var client = new net.Socket();
+
+
+// var charPosition = (str, char) => {
+//     for (let i = 0; i < str.length; i++)
+//         if (str[i] == char)
+//             return i;
+//     return -1;
+// }
