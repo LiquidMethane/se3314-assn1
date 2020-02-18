@@ -34,14 +34,8 @@ module.exports = {
 
             let request = parseBuffer(data); //parse request packet
 
-            console.log(
-
-`Client-${connTime} requests:\n
-\t--ITP Version: ${request[0]}
-\t--Request Type: ${request[1]}
-\t--Image File Name: '${request[2]}'\n`
-
-);
+            //log request information to console
+            console.log(`Client-${connTime} requests:\n\t--ITP Version: ${request[0]}\t--Request Type: ${request[1]}\t--Image File Name: '${request[2]}'\n`);
 
             fs.readFile(`./images/${request[2]}`, (err, data) => { //attemps to load file requested
                 if (err)

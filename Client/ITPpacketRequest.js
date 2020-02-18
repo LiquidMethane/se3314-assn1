@@ -12,7 +12,6 @@ module.exports = {
         //
 
         buffer = Buffer.alloc(4 + Buffer.byteLength(fileName)); //figure out the buffer size needed to store all information
-        console.log(buffer.length);
 
         //store information into buffer
         buffer.writeUIntBE(version, 0, 3);

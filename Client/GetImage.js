@@ -44,18 +44,10 @@ client.connect(port, host, () => {
 //client receives response packet from server
 client.on('data', data => {
   
-  let response = parsePacket(data);
+  let response = parsePacket(data); //parse response packet
 
-  console.log(
-  
-`Server Sent:\n
-\t--ITP Version: ${response[0]}
-\t--Response Type: ${response[1]}
-\t--Sequence Number: ${response[2]}
-\t--TimeStamp: ${response[3]}
-\t--Image Size: ${response[4]}\n`
-
-);
+  //log response information to console
+  console.log(`Server Sent:\n\t--ITP Version: ${response[0]}\t--Response Type: ${response[1]}\t--Sequence Number: ${response[2]}\t--TimeStamp: ${response[3]}\t--Image Size: ${response[4]}\n`);
 
   if (response[1] == 1) { //if image found then save and open
     fs.writeFile(fileName, response[5], () => {
