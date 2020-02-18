@@ -34,15 +34,19 @@ module.exports = {
 
             let request = parseBuffer(data); //parse request packet
 
-            //log request information to console
-            console.log(`Client-${connTime} requests:\n\t--ITP Version: ${request[0]}\t--Request Type: ${request[1]}\t--Image File Name: '${request[2]}'\n`);
+            if (request[0] == 3314 && request[1] == 0) { //check request packet validity
+                //log request information to console
+                console.log(`Client-${connTime} requests:\n\t--ITP Version: ${request[0]}\n\t--Request Type: ${request[1]}\n\t--Image File Name: '${request[2]}'\n`);
 
-            fs.readFile(`./images/${request[2]}`, (err, data) => { //attemps to load file requested
-                if (err)
-                    sendResponse(sock, request[0], 2, singleton.getSequenceNumber(), singleton.getTimestamp(), 0, Buffer.alloc(0)); //fails to load requested file
-                else
-                    sendResponse(sock, request[0], 1, singleton.getSequenceNumber(), singleton.getTimestamp(), data.length, data);
-            })
+                fs.readFile(`./images/${request[2]}`, (err, data) => { //attemps to load file requested
+                    if (err)
+                        sendResponse(sock, request[0], 2, singleton.getSequenceNumber(), singleton.getTimestamp(), 0, Buffer.alloc(0)); //fails to load requested file
+                    else
+                        sendResponse(sock, request[0], 1, singleton.getSequenceNumber(), singleton.getTimestamp(), data.length, data);
+                })
+            }
+
+
 
         });
 

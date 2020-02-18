@@ -47,7 +47,7 @@ client.on('data', data => {
   let response = parsePacket(data); //parse response packet
 
   //log response information to console
-  console.log(`Server Sent:\n\t--ITP Version: ${response[0]}\t--Response Type: ${response[1]}\t--Sequence Number: ${response[2]}\t--TimeStamp: ${response[3]}\t--Image Size: ${response[4]}\n`);
+  console.log(`Server Sent:\n\t--ITP Version: ${response[0]}\n\t--Response Type: ${response[1]}\n\t--Sequence Number: ${response[2]}\n\t--TimeStamp: ${response[3]}\n\t--Image Size: ${response[4]}\n`);
 
   if (response[1] == 1) { //if image found then save and open
     fs.writeFile(fileName, response[5], () => {
