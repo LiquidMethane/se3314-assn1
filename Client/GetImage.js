@@ -62,13 +62,17 @@ client.on('data', data => {
 //server ends the connection
 client.on('end', () => {
   console.log('Disconnected from the server\n');
-})
+});
 
 
 //socket closes
 client.on('close', () => {
   console.log('Connection closed\n');
-})
+});
+
+client.on('error', err => {
+  console.log('Error has occorred: ', err.message, '\n');
+});
 
 
 //parse the response packet sent from server

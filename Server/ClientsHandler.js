@@ -52,7 +52,11 @@ module.exports = {
 
         sock.on('end', () => { //server receives ending request from client
             console.log(`Client-${connTime} closed the connection\n`);
-        })
+        });
+
+        sock.on('error', err => {
+            console.log('Error has occurred: ', err.message, '\n');
+        });
 
 
     }
